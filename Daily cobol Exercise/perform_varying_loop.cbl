@@ -1,0 +1,13 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. LOOPDEMO.
+
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01  WS-I            PIC 9(2) VALUE 1.
+
+       PROCEDURE DIVISION.
+           DISPLAY "07 - PERFORM VARYING LOOP"
+           PERFORM VARYING WS-I FROM 1 BY 1 UNTIL WS-I > 10
+               DISPLAY "COUNT = " WS-I
+           END-PERFORM
+           STOP RUN.
