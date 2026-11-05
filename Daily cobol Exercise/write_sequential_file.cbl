@@ -1,0 +1,25 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. WRITESEQ.
+
+       ENVIRONMENT DIVISION.
+       INPUT-OUTPUT SECTION.
+       FILE-CONTROL.
+           SELECT OUT-FILE ASSIGN TO "students.dat"
+               ORGANIZATION IS LINE SEQUENTIAL.
+
+       DATA DIVISION.
+       FILE SECTION.
+       FD  OUT-FILE.
+       01  OUT-REC         PIC X(50).
+
+       PROCEDURE DIVISION.
+           OPEN OUTPUT OUT-FILE
+           MOVE "1001,ANITA,85" TO OUT-REC
+           WRITE OUT-REC
+           MOVE "1002,RAHUL,91" TO OUT-REC
+           WRITE OUT-REC
+           MOVE "1003,MEERA,77" TO OUT-REC
+           WRITE OUT-REC
+           CLOSE OUT-FILE
+           DISPLAY "15 - FILE WRITTEN: students.dat"
+           STOP RUN.
