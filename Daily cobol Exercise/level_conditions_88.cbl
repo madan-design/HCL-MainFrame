@@ -1,0 +1,17 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. LEVEL88.
+
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01  WS-STATUS       PIC X VALUE "A".
+           88 STATUS-ACTIVE    VALUE "A".
+           88 STATUS-INACTIVE  VALUE "I".
+
+       PROCEDURE DIVISION.
+           DISPLAY "18 - 88 LEVEL CONDITIONS"
+           IF STATUS-ACTIVE
+               DISPLAY "ACCOUNT IS ACTIVE"
+           ELSE
+               DISPLAY "ACCOUNT IS INACTIVE"
+           END-IF
+           STOP RUN.
