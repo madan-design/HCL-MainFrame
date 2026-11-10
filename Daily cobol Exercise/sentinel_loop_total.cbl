@@ -1,0 +1,17 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. SENTTOTAL.
+
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01  WS-NUM          PIC 9(4) VALUE 0.
+       01  WS-TOTAL        PIC 9(6) VALUE 0.
+
+       PROCEDURE DIVISION.
+           DISPLAY "20 - SENTINEL LOOP (ENTER 0 TO STOP)"
+           PERFORM UNTIL WS-NUM = 0
+               DISPLAY "ENTER NUMBER: " WITH NO ADVANCING
+               ACCEPT WS-NUM
+               ADD WS-NUM TO WS-TOTAL
+           END-PERFORM
+           DISPLAY "TOTAL = " WS-TOTAL
+           STOP RUN.
