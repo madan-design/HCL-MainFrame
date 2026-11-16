@@ -1,0 +1,23 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. LOANEMI.
+
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01  P               PIC 9(9)V99 VALUE 500000.00.
+       01  RATE-ANNUAL     PIC 9(2)V99 VALUE 9.00.
+       01  N-MONTHS        PIC 9(3) VALUE 60.
+       01  R-MONTHLY       PIC 9V9(8).
+       01  POW-VALUE       PIC 9(4)V9(8).
+       01  EMI             PIC 9(7)V99.
+
+       PROCEDURE DIVISION.
+           COMPUTE R-MONTHLY = RATE-ANNUAL / 1200
+           COMPUTE POW-VALUE = FUNCTION EXP(N-MONTHS * FUNCTION LOG(1 + R-MONTHLY))
+           COMPUTE EMI = P * R-MONTHLY * POW-VALUE / (POW-VALUE - 1)
+
+           DISPLAY "26 - LOAN EMI CALCULATOR"
+           DISPLAY "PRINCIPAL : " P
+           DISPLAY "RATE      : " RATE-ANNUAL
+           DISPLAY "MONTHS    : " N-MONTHS
+           DISPLAY "EMI       : " EMI
+           STOP RUN.
