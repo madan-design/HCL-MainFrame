@@ -1,0 +1,37 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. CLMLOOKUP.
+
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01  CLAIM-TABLE.
+           05 CLAIM-ENTRY OCCURS 5 TIMES
+              ASCENDING KEY IS CLAIM-ID
+              INDEXED BY C-IX.
+              10 CLAIM-ID      PIC 9(5).
+              10 CLAIM-STATUS  PIC X(10).
+       01  WS-SEARCH-ID    PIC 9(5) VALUE 10030.
+       01  WS-FOUND-STATUS PIC X(10) VALUE SPACES.
+
+       PROCEDURE DIVISION.
+           MOVE 10010 TO CLAIM-ID(1)
+           MOVE "OPEN" TO CLAIM-STATUS(1)
+           MOVE 10020 TO CLAIM-ID(2)
+           MOVE "CLOSED" TO CLAIM-STATUS(2)
+           MOVE 10030 TO CLAIM-ID(3)
+           MOVE "REVIEW" TO CLAIM-STATUS(3)
+           MOVE 10040 TO CLAIM-ID(4)
+           MOVE "OPEN" TO CLAIM-STATUS(4)
+           MOVE 10050 TO CLAIM-ID(5)
+           MOVE "REJECTED" TO CLAIM-STATUS(5)
+
+           SEARCH ALL CLAIM-ENTRY
+               AT END
+                   DISPLAY "27 - CLAIM NOT FOUND"
+               WHEN CLAIM-ID(C-IX) = WS-SEARCH-ID
+                   MOVE CLAIM-STATUS(C-IX) TO WS-FOUND-STATUS
+           END-SEARCH
+
+           IF WS-FOUND-STATUS NOT = SPACES
+               DISPLAY "27 - CLAIM " WS-SEARCH-ID " STATUS " WS-FOUND-STATUS
+           END-IF
+           STOP RUN.
